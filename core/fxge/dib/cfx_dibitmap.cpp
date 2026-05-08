@@ -715,6 +715,7 @@ void CFX_DIBitmap::CompositeOneBPPMask(int dest_left,
   });
 }
 
+#if BUILDFLAG(IS_WIN) || defined(PDF_USE_AGG)
 bool CFX_DIBitmap::CompositeRect(int left,
                                  int top,
                                  int width,
@@ -886,6 +887,7 @@ bool CFX_DIBitmap::CompositeRect(int left,
   }
   return true;
 }
+#endif  // BUILDFLAG(IS_WIN) || defined(PDF_USE_AGG)
 
 bool CFX_DIBitmap::ConvertFormat(FXDIB_Format dest_format) {
   static constexpr FXDIB_Format kAllowedDestFormats[] = {
